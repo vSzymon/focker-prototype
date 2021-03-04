@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace focker_prototype.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public abstract class ApiController : ControllerBase
     {
