@@ -1,8 +1,5 @@
 ﻿using focker_prototype.Queries;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace focker_prototype.Controllers

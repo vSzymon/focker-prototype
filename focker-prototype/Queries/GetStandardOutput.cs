@@ -1,9 +1,6 @@
-﻿using focker_prototype.ViewModels;
-using MediatR;
-using System;
+﻿using MediatR;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
