@@ -33,7 +33,7 @@ namespace focker_prototype.Commands
                 process.ArgumentList.Add(arg);
             }
 
-            var mountedProcess = Process.Start(process);
+            using  var mountedProcess = Process.Start(process);
           
             return Task.FromResult(mountedProcess?.Id);
         }
