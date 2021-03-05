@@ -2,25 +2,36 @@
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace focker_prototype.Queries
 {
-    public class GetStandardOutputQuery : IRequest<ProcessOutputViewModel>
+    public class GetStandardOutputQuery : IRequest<IReadOnlyCollection<string>>
     {
-        public GetStandardOutputQuery(int id)
+        public GetStandardOutputQuery(int id, int? tail)
         {
             Id = id;
+            Tail = tail;
         }
         public int Id { get; set; }
+        public int? Tail { get; set; }
     }
-    public class GetStandardOutputQueryHandler : IRequestHandler<GetStandardOutputQuery, ProcessOutputViewModel>
+    public class GetStandardOutputQueryHandler : IRequestHandler<GetStandardOutputQuery, IReadOnlyCollection<string>>
     {
-        public Task<ProcessOutputViewModel> Handle(GetStandardOutputQuery request, CancellationToken cancellationToken)
+        public async Task<IReadOnlyCollection<string>> Handle(GetStandardOutputQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            using var processInfo = Process.GetProcessById(request.Id);
+            var outputLines = new List<string>();
+
+            while (request.Tail != 0 && processInfo.StandardOutput.EndOfStream == false) 
+            {
+                outputLines.Add( await processInfo.StandardOutput.ReadLineAsync() );
+                request.Tail -= 1;
+            }
+            return outputLines;
         }
     }
 }
