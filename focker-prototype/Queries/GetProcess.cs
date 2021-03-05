@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using focker_prototype.ViewModels;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
