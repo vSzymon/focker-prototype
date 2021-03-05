@@ -12,14 +12,13 @@ namespace focker_prototype.Controllers
     {
         [HttpPost]
         public async Task<IActionResult> Create(CreateProcessCommand command) =>
-            Ok(await Sender.Send(command));
-        
+            Ok( await Sender.Send(command) );
+
 
         [HttpPost]
-        public async Task<IActionResult> Kill() 
-        {
-            return Ok(); 
-        }
+        public async Task<IActionResult> Kill(KillProcessCommand command) =>
+            Ok( await Sender.Send(command) );
+                
     
 
 
