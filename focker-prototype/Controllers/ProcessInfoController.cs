@@ -18,8 +18,8 @@ namespace focker_prototype.Controllers
             Ok( await Sender.Send(new GetAllProcessesQuery()) );
     
         [HttpGet("id")]
-        public async Task<IActionResult> GetStandardOutput(int id) =>
-             Ok( await Sender.Send(new GetStandardOutputQuery(id)) );
+        public async Task<IActionResult> GetStandardOutput(int id, int? tail) =>
+             Ok( await Sender.Send(new GetStandardOutputQuery(id, tail)) );
 
 
     }
